@@ -1,6 +1,8 @@
 package br.com.allan.desafio.controller;
 
 import br.com.allan.desafio.domain.user.AuthDto;
+import br.com.allan.desafio.domain.user.User;
+import br.com.allan.desafio.infra.security.TokenService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +20,13 @@ public class AuthController {
     @Autowired
     private AuthenticationManager manager;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping
     public ResponseEntity login(@RequestBody AuthDto dto){
         var token = new UsernamePasswordAuthenticationToken(dto.login(), dto.password());
         var authentication = manager.authenticate(token);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(tokenService.generateToken((User) authentication.getPrincipal()));
     }
 }
