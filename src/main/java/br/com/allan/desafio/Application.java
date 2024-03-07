@@ -1,4 +1,4 @@
-package br.com.allan.desafio;
+ package br.com.allan.desafio;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

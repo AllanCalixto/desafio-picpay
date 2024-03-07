@@ -1,27 +1,25 @@
 package br.com.allan.desafio.domain.user;
 
-import java.math.BigDecimal;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.List;
 
 @Entity(name="users")
 @Table(name="users")
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 @Setter
 @EqualsAndHashCode(of="id")
-public class User {
+public class User implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -30,6 +28,7 @@ public class User {
 	private String document;
 	@Column(unique=true)
 	private String email;
+	private String login;
 	private String password;
 	private UserType userType;
 	private BigDecimal balance;
@@ -91,13 +90,46 @@ public class User {
 	}
 
 
+	public String getLogin() { return login; }
 
+	public void setLogin(String login) { this.login = login; }
+
+
+
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+	}
 
 	public String getPassword() {
 		return password;
 	}
 
+	@Override
+	public String getUsername() {
+		return login;
+	}
 
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 
 
 	public void setPassword(String password) {

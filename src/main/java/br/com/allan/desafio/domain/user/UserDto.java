@@ -6,7 +6,8 @@ public record UserDto(
 		String name,
 		String document, 
 		BigDecimal balance, 
-		String email, 
+		String email,
+		String login,
 		String password,
 		UserType userType
 		) {
