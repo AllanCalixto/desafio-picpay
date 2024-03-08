@@ -1,4 +1,4 @@
-package br.com.allan.desafio.services;
+package br.com.allan.desafio.domain.notification;
 
 import org.springframework.stereotype.Service;
 

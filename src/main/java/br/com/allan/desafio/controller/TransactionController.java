@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.allan.desafio.domain.transaction.Transaction;
 import br.com.allan.desafio.domain.transaction.TransactionDto;
-import br.com.allan.desafio.services.TransactionService;
+import br.com.allan.desafio.domain.transaction.TransactionService;
 
 @RestController
 @RequestMapping("/transactions")

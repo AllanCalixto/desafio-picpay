@@ -1,17 +1,16 @@
-package br.com.allan.desafio.services;
+package br.com.allan.desafio.domain.transaction;
 
 import java.time.LocalDateTime;
 import java.util.Map;
 
+import br.com.allan.desafio.domain.user.UserService;
+import br.com.allan.desafio.domain.notification.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.allan.desafio.domain.transaction.Transaction;
-import br.com.allan.desafio.domain.transaction.TransactionDto;
 import br.com.allan.desafio.repositories.TransactionRepository;
 
 @Service

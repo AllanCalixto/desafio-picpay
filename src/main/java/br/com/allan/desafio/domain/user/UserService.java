@@ -1,4 +1,4 @@
-package br.com.allan.desafio.services;
+package br.com.allan.desafio.domain.user;
 
 import java.math.BigDecimal;
 import java.util.List;
